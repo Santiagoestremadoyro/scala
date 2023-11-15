@@ -138,3 +138,49 @@ object ObjectOrientation extends App {
 
 
 }
+/*
+Certainly! Let's break down the Scala code you provided and discuss how generics and the MyList[T] abstract class work.
+
+abstract class MyList[T] {
+  def head: T
+  def tail: MyList[T]
+}
+Generics ([T]): In Scala, generics allow you to write classes and methods that can work with any type. In this case, T is a type parameter,
+ and it represents the type of elements that the MyList will contain. It's a placeholder for the actual type.
+
+Abstract Class (MyList[T]): MyList is an abstract class with a type parameter T. It declares two abstract methods:
+
+head: Returns the first element of the list.
+tail: Returns the rest of the list (excluding the first element).
+
+val aList: List[Int] = List(1,2,3)
+val first = aList.head // int
+val rest = aList.tail
+
+List[Int]: Here, List is a concrete implementation of a list in Scala. The type parameter is Int, so aList is a list of integers.
+
+aList.head: Accesses the first element of the list (1 in this case).
+
+aList.tail: Returns the rest of the list (List(2, 3) in this case).
+aStringList: This is a list of strings (List("hello", "Scala")).
+
+aStringList.head: Accesses the first element of the string list ("hello" in this case).
+
+Connection with MyList[T]:
+The MyList[T] abstract class serves as a generic blueprint for lists. While List is a specific implementation, MyList[T] is more abstract and can 
+be used as a base for creating custom list implementations with different types.
+
+For example, you could create your own list implementation by extending MyList[T] and providing concrete implementations for head and tail:
+
+class MyCustomList[T](override val head: T, override val tail: MyList[T]) extends MyList[T]
+
+
+This way, you can create lists with custom behavior while still adhering to the generic structure defined in MyList[T].
+
+In summary, generics allow you to write flexible and reusable code that can work with different types, and the MyList[T] abstract class provides
+ a template for creating lists with common operations. The specific List implementation is just one example of using generics in Scala.
+*/
+
+
+
+
