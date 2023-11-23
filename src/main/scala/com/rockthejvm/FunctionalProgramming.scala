@@ -3,52 +3,53 @@ package com.rockthejvm
 object FunctionalProgramming extends App {
 
   // Scala is OO
-  class Person(name: String) {
+
+  class Person(name : String) {
+
     def apply(age: Int): Unit = println(s"I have aged $age years")
   }
 
-  val bob = new Person("Bob")
+  val bob = new Person("bob")
   bob.apply(43)
-  bob(43) // INVOKING bob as a function === bob.apply(43)
+  bob(49) // Invoking bob as a function === bob.apply(49)
 
   /*
-    Scala runs on the JVM
-    Functional programming:
-    - compose functions
-    - pass functions as args
-    - return functions as results
+  Scala runs in JVM
+  Functional Programming:
+  - compose functions
+  - pass functions as args
+  - return functions as results
 
-    Conclusion: FunctionX = Function1, Function2, ... Function22
+  conclusion : FunctionX = Function1, Function2, Functions3....Function22
    */
 
-  val simpleIncrementer = new Function1[Int, Int] {
+  val SimpleIncrementor = new Function1[Int, Int] {
     override def apply(arg: Int): Int = arg + 1
   }
 
-  simpleIncrementer.apply(23) // 24
-  simpleIncrementer(23) // simpleIncrementer.apply(23)
-  // defined a function!
+  SimpleIncrementor(23)
+  SimpleIncrementor.apply(23)
 
-  // ALL SCALA FUNCTIONS ARE INSTANCES OF THESE FUNCTION_X TYPES
+  // all scala FUNCTIONS are instances of the FunctionX TYPES
 
-  // function with 2 arguments and a String return type
-  val stringConcatenator = new Function2[String, String, String] {
+  //Functions with two arguments and a string return
+  val StringConcatenator = new Function2[String, String, String] {
     override def apply(arg1: String, arg2: String): String = arg1 + arg2
   }
 
-  stringConcatenator("I love", " Scala") // "I love Scala"
+  StringConcatenator("I love", "Scala")
 
-  // syntax sugars
-  val doubler: Int => Int = (x: Int) => 2 * x
-  doubler(4) // 8
+  //syntax sugar
+  val doubler: Int => Int = (X: Int) => X * 2
+  doubler(4)// 8
 
   /*
-    equivalent to the much longer:
-
-    val doubler: Function1[Int, Int] = new Function1[Int, Int] {
-      override def apply(x: Int) = 2 * x
-    }
+  equivalent to:
+  val doubler : Function1[Int, Int] = New Function1[Int, Int] {
+     override del apply(x= Int) = x * 2
+     }
    */
+
 
   // higher-order function: take functions as arg/return functions as results.
   val aMappedList: List[Int] = List(1,2,3).map(x => x+1) //HOF
