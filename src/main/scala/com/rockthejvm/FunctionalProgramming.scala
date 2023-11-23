@@ -4,7 +4,7 @@ object FunctionalProgramming extends App {
 
   // Scala is OO
   class Person(name: String) {
-    def apply(age: Int) = println(s"I have aged $age years")
+    def apply(age: Int): Unit = println(s"I have aged $age years")
   }
 
   val bob = new Person("Bob")
@@ -90,4 +90,17 @@ object FunctionalProgramming extends App {
   val setHas5 = aset.contains(5)
   val anAddedSet = aSet + 5 // set(1,2,3,5)
   val aRemoveSet = aSet - 2 //set(1,3)
+
+  //range
+  val aRange = 1 to 1000
+  val twoByTwo aRange.map(x => 2 * x).toList // List(2,4,6,8....2000
+
+  //tuples: group of values under the same values
+  val aTuple = ("Bon Jovi", "Rock", 1948)
+
+  //maps
+  val aPhoneBook = Map[String, Int] = Map(
+    ("daniel", 685234),
+    "jane", -> 357951 //equivalent to ("jane", 357951)
+  )
 }
