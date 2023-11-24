@@ -1,74 +1,67 @@
 package com.rockthejvm
 
-import scala.concurrent.Future
-import scala.util.{Failure, Success, Try}
-import scala.concurrent.ExecutionContext.Implicits.global
-
 object Advanced extends App {
+  import scala.concurrent.ExecutionContext.Implicits.global
+  import scala.concurrent.Future
+  import scala.util.{Failure, Success, Try}
 
-  /**
-    lazy evaluation
-   */
-  lazy val aLazyValue = 2
-  lazy val lazyValueWithSideEffect = {
-    println("I am so very lazy!")
+  //lazy evaluations
+  lazy val aLazyValue = 22
+  lazy val aLazyValWithSideEffects = {
+    println("i am Scala")
     43
   }
 
-  val eagerValue = lazyValueWithSideEffect + 1
-  // useful in infinite collections
+  val eagerValue = aLazyValWithSideEffects + 1
+  //useful in infinite collections
 
-  /**
-    "pseudo-collections": Option, Try
-   */
-  def methodWhichCanReturnNull(): String = "hello, Scala"
-  val anOption = Option(methodWhichCanReturnNull()) // Some("hello, Scala")
-  // option = "collection" which contains at most one element: Some(value) or None
+  //"pseudo-Collections": Option, Try
+  def methodThatCanReturnNull : String = "Hello Scala"
+  val anOption = Option(methodThatCanReturnNull()) // some("hello Scala")
+  //options are collections that can contain at most one element: Null or Some(value)
 
-  val stringProcessing = anOption match {
-    case Some(string) => s"I have obtained a valid string: $string"
-    case None => "I obtained nothing"
+  val stringProcession = anOption match {
+    case Some(string) => s"i have obtain a valid string: $string"
+    case None => "i obtain nothing"
   }
 
-  def methodWhichCanThrowException(): String = throw new RuntimeException
-  val aTry = Try(methodWhichCanThrowException())
-  // a try = "collection" with either a value if the code went well, or an exception if the code threw one
+  //map, filter, flatmap
+
+  def MethodWhichCanThrowException(): String = throw new RuntimeException
+  val aTry = Try(MethodWhichCanThrowException())
+  // a try = "collection" with either a value if the code went well or an exception if the code threw one.
 
   val anotherStringProcessing = aTry match {
-    case Success(validValue) => s"I have obtained a valid string: $validValue"
-    case Failure(ex) => s"I have obtained an exception: $ex"
+    case Success(validValue) => s"i have obtain a valid string $validValue"
+    case Failure(ex) => s"I have obtain a exception $ex"
   }
-  // map, flatMap, filter
-
 
   /**
-    * Evaluate something on another thread
-    * (asynchronous programming)
-    */
+   * Evaluate something on another thread
+   * (asynchronous programming)
+   */
   val aFuture = Future {
     println("Loading...")
     Thread.sleep(1000)
-    println("I have computed a value.")
+    println("I have computed a value")
     67
   }
 
-  // future is a "collection" which contains a value when it's evaluated
-  // future is composable with map, flatMap and filter
+  //future is a "collections" that contains a value when it is evaluated
+  //future is composable with map, filter, flatmap
 
   /**
-    * Implicits basics
-    */
-  // #1: implicit arguments
+   * Implicits basic
+   */
+  //1: implicit value conversion
   def aMethodWithImplicitArgs(implicit arg: Int) = arg + 1
   implicit val myImplicitInt = 46
-  println(aMethodWithImplicitArgs)  // aMethodWithImplicitArgs(myImplicitInt)
+  println(aMethodWithImplicitArgs) //
 
-  // #2: implicit conversions
-  implicit class MyRichInteger(n: Int) {
+  //2: implicit conversion
+  implicit class myRichInteger(n: Int){
     def isEven() = n % 2 == 0
   }
-
   println(23.isEven()) // new MyRichInteger(23).isEven()
-  // use this carefully
 
 }
