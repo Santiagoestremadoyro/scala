@@ -2,12 +2,9 @@ package com.rockthejvm
 
 object FunctionalProgramming extends App {
 
-  // Scala is OO
-<<<<<<< HEAD
-  class Person(name: String) {
-=======
+
   class Person(name : String) {
->>>>>>> main
+
     def apply(age: Int): Unit = println(s"I have aged $age years")
   }
 
@@ -52,7 +49,14 @@ object FunctionalProgramming extends App {
      }
    */
 
-<<<<<<< HEAD
+  // higher-order function: take functions as arg/return functions as results.
+  val aMappedList: List[Int] = List(1,2,3).map(x => x+1) //HOF
+  val aFlatMappedList: List(1,2,3).flatMap { X =>
+    List(X, X  2)
+  } //alternative syntax, same as .map(X => List(x, 2* X))
+  val afilterList: List(1,2,3,4,5).filter (_ <= 3) //equivalent to x => x <= 3
+al
+
   // higher-order function: take functions as arg/return functions as results.
   val aMappedList: List[Int] = List(1,2,3).map(x => x+1) //HOF
   val aFlatMappedList: List(1,2,3).flatMap { X =>
@@ -105,9 +109,4 @@ object FunctionalProgramming extends App {
   val aPhoneBook = Map[String, Int] = Map(
     ("daniel", 685234),
     "jane", -> 357951 //equivalent to ("jane", 357951)
-  )
-=======
 
-
->>>>>>> main
-}
