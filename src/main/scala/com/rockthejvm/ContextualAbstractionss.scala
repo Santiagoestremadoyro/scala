@@ -6,6 +6,9 @@ object ContextualAbstractionss {
        */
   val aList = List(2,1,3,4,5)
 
+  val anOrderedList = aList. sorted // (ordering)
+
+
 
   //Ordering
   given descendingOrdering: Ordering[Int] = Ordering.fromLessThan(_ > _) //(a,b) = a > b
@@ -22,6 +25,7 @@ object ContextualAbstractionss {
   given intCombinator: Combinator[Int] = new Combinator[Int] {
     override def combine(x: Int, y: Int): Int = x + y 
   }
+
   val theSum = combineAll(aList) //intCombinator
 
   /*
@@ -33,6 +37,7 @@ object ContextualAbstractionss {
     - the companion of Int
 
    */
+
 
   //context bounds
   def combineAll_v2[A](list: List[A])(using Combinator[A]): A = ???
