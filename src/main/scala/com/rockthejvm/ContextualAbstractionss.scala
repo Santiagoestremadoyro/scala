@@ -9,6 +9,7 @@ object ContextualAbstractionss {
   val anOrderedList = aList. sorted // (ordering)
 
 
+
   //Ordering
   given descendingOrdering: Ordering[Int] = Ordering.fromLessThan(_ > _) //(a,b) = a > b
 
